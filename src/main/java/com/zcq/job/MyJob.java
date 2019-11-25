@@ -1,5 +1,6 @@
 package com.zcq.job;
 
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -10,6 +11,7 @@ import java.time.LocalTime;
  * @author Maybeeeee
  * @date 2019/11/25 9:06 下午
  */
+@DisallowConcurrentExecution
 public class MyJob implements Job {
     private String name;
 
@@ -26,6 +28,13 @@ public class MyJob implements Job {
         //jobExecutionContext可以获取jobdetail和 trigger等信息
 //        String name = jobExecutionContext.getJobDetail().getJobDataMap().getString("name");
         LocalTime localTime = LocalTime.now();
-        System.out.println(name + "正在执行" + localTime.toString());
+        System.out.println(Thread.currentThread().getName() + "开始执行" + localTime.toString());
+        try {
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        LocalTime endTime = LocalTime.now();
+        System.out.println(Thread.currentThread().getName() + "结束执行" + endTime.toString());
     }
 }

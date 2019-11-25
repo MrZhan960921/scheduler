@@ -16,7 +16,7 @@ public class QuartzDemo {
         Trigger trigger=TriggerBuilder.newTrigger()
                 .startNow()
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule()
-                    .withIntervalInSeconds(10)
+                    .withIntervalInSeconds(5)
                         .repeatForever()
                 ).build();
 
