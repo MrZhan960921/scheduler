@@ -11,10 +11,20 @@ import java.time.LocalTime;
  * @date 2019/11/25 9:06 下午
  */
 public class MyJob implements Job {
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         //job每次执行都会创建一个新的对象，所以不要引用外部变量来操作传递
         //jobExecutionContext可以获取jobdetail和 trigger等信息
-        String name = jobExecutionContext.getJobDetail().getJobDataMap().getString("name");
+//        String name = jobExecutionContext.getJobDetail().getJobDataMap().getString("name");
         LocalTime localTime = LocalTime.now();
         System.out.println(name + "正在执行" + localTime.toString());
     }
