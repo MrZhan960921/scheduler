@@ -20,6 +20,10 @@ public class MyJob implements Job {
 
         LocalTime localTime = LocalTime.now();
         System.out.println(localTime.toString()+"，msg="+msg);
-
+        try {
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
