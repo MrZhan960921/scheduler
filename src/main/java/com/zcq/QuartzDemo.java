@@ -10,6 +10,7 @@ public class QuartzDemo {
         scheduler.start();
         JobDetail jobDetail=JobBuilder.newJob(MyJob.class)
                 .withIdentity("jobDetail1","group1")
+                .usingJobData("name","james")
                 .build();
 
         Trigger trigger=TriggerBuilder.newTrigger()

@@ -12,7 +12,10 @@ import java.time.LocalTime;
  */
 public class MyJob implements Job {
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        LocalTime localTime=LocalTime.now();
-        System.out.println("我正在执行"+localTime.toString());
+        //job每次执行都会创建一个新的对象，所以不要引用外部变量来操作传递
+        //jobExecutionContext可以获取jobdetail和 trigger等信息
+        String name = jobExecutionContext.getJobDetail().getJobDataMap().getString("name");
+        LocalTime localTime = LocalTime.now();
+        System.out.println(name + "正在执行" + localTime.toString());
     }
 }
